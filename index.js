@@ -117,6 +117,7 @@ if (command === "list") {
     }
   }
 } else if (command === "help") {
+  console.log("help");
 } else if (command === "rename") {
   console.log("rename");
 } else {
