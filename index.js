@@ -109,7 +109,6 @@ if (command === "list") {
             console.log("Không xoá file!");
           } else {
             console.log("Command không hợp lệ!");
-            console.log("Command không hợp lệ!");
           }
 
           rl.close();
