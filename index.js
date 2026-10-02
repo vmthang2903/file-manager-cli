@@ -118,6 +118,7 @@ if (command === "list") {
   }
 } else if (command === "help") {
 } else if (command === "rename") {
+  console.log("rename");
 } else {
   console.log("Command không hợp lệ!");
 }
