@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const readline = require("readline");
 
 // lay command tu tham so dong lenh
 const command = process.argv[2];
@@ -84,7 +85,39 @@ if (command === "list") {
     }
   }
 } else if (command === "delete") {
-  console.log("Xóa file");
+  if (!fileName) {
+    console.log("Chưa nhập tên file, vui lòng thử lại!");
+  } else {
+    // lay duong dan cua file
+    const filePath = path.join(__dirname, fileName);
+    if (!fs.existsSync(filePath)) {
+      console.log("Tên file không tồn tại, hãy kiểm tra lại!");
+    } else {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+
+      rl.question(
+        `Bạn có chắc chắn muốn xoá file \"${fileName}\"? (y/n) -> `,
+        (answer) => {
+          const normalizedAns = answer.trim().toLowerCase();
+          if (normalizedAns === "y") {
+            fs.unlinkSync(filePath);
+            console.log("Đã xoá file:", fileName);
+          } else if (normalizedAns === "n") {
+            console.log("Không xoá file!");
+          } else {
+            console.log("Command không hợp lệ!");
+          }
+
+          rl.close();
+        },
+      );
+    }
+  }
+} else if (command === "help") {
+} else if (command === "rename") {
 } else {
   console.log("Command không hợp lệ!");
 }
